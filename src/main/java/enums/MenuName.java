@@ -1,6 +1,6 @@
 package enums;
 
-public enum MenuNameDefine {
+public enum MenuName {
     MENU_APPETIZER_MUSHROOM_SOUP("양송이수프"),
     MENU_APPETIZER_TAPAS("타파스"),
     MENU_APPETIZER_CAESAR_SALAD("시저샐러드"),
@@ -17,7 +17,7 @@ public enum MenuNameDefine {
 
     private String value;
 
-    MenuNameDefine(String value) {
+    MenuName(String value) {
         this.value = value;
     }
 

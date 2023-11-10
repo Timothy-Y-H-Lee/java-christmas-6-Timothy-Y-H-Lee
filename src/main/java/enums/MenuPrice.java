@@ -1,6 +1,6 @@
 package enums;
 
-public enum MenuPriceDefine {
+public enum MenuPrice {
     MENU_APPETIZER_MUSHROOM_SOUP_PRICE(6_000),
     MENU_APPETIZER_TAPAS_PRICE(5_500),
     MENU_APPETIZER_CAESAR_SALAD_PRICE(8_000),
@@ -17,7 +17,7 @@ public enum MenuPriceDefine {
 
     private Integer value;
 
-    MenuPriceDefine(Integer value) {
+    MenuPrice(Integer value) {
         this.value = value;
     }
 
