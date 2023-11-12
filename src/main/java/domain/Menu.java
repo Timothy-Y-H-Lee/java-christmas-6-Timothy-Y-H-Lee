@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Menu {
-    private Map<String, Map<String, Integer>> menu = new HashMap<>();
+    private Map<String, Map<String, Integer>> menuMap = new HashMap<>();
 
     private Menu() {
         initMenu();
@@ -29,7 +29,7 @@ public class Menu {
 
     private void initMenuCategory() {
         for (String menuCategory : MenuCategory.getKeyList()) {
-            menu.put(menuCategory, initSubCategoryMenu(menuCategory));
+            menuMap.put(menuCategory, initSubCategoryMenu(menuCategory));
         }
 
     }
