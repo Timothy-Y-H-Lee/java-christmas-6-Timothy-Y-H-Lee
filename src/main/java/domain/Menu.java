@@ -1,5 +1,7 @@
 package domain;
 
+import static enums.UserInterface.ILLEGAL_INITIALIZATION_STATE;
+
 import enums.MenuCategory;
 import enums.MenuName;
 import enums.MenuPrice;
@@ -49,7 +51,7 @@ public class Menu {
             if (subMenuPriceKey.contains(subMenuKey)) return MenuPrice.getPriceByKey(subMenuPriceKey);
         }
 
-        throw new IllegalStateException("ILLEGAL_INITIALIZATION_STATE");
+        throw new IllegalStateException(ILLEGAL_INITIALIZATION_STATE.getValue());
     }
 
 }
