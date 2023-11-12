@@ -1,5 +1,8 @@
 package enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum MenuName {
     MENU_APPETIZER_MUSHROOM_SOUP("양송이수프"),
     MENU_APPETIZER_TAPAS("타파스"),
@@ -27,5 +30,13 @@ public enum MenuName {
 
     public String getValue() {
         return value;
+    }
+
+    public static List<String> getKeyList() {
+        List<String> keyList = new ArrayList<>();
+        for (MenuName menuName : MenuName.values()) {
+            keyList.add(menuName.getName());
+        }
+        return keyList;
     }
 }

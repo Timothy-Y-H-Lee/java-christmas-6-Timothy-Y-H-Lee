@@ -1,5 +1,8 @@
 package enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum MenuPrice {
     MENU_APPETIZER_MUSHROOM_SOUP_PRICE(6_000),
     MENU_APPETIZER_TAPAS_PRICE(5_500),
@@ -27,5 +30,21 @@ public enum MenuPrice {
 
     public Integer getValue() {
         return value;
+    }
+
+    // Key를 기준으로 Price를 반환
+    public static Integer getPriceByKey(String priceKey) {
+        for (MenuPrice menuPrice : MenuPrice.values()) {
+            if (menuPrice.getKey().equals(priceKey)) return menuPrice.getValue();
+        }
+        throw new IllegalArgumentException(UserInterface.ILLEGAL_MENU_ORDER.getValue());
+    }
+
+    public static List<String> getKeyList() {
+        List<String> keyList = new ArrayList<>();
+        for (MenuPrice menuPrice : MenuPrice.values()) {
+            keyList.add(menuPrice.getKey());
+        }
+        return keyList;
     }
 }
