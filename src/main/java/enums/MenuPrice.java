@@ -33,7 +33,7 @@ public enum MenuPrice {
     }
 
     // Key를 기준으로 Price를 반환
-    public static Integer getPriceByKey(String priceKey) {
+    public static Integer findPriceByKey(String priceKey) {
         for (MenuPrice menuPrice : MenuPrice.values()) {
             if (menuPrice.getKey().equals(priceKey)) return menuPrice.getValue();
         }
