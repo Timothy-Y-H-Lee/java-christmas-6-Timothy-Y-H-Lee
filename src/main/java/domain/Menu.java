@@ -29,7 +29,7 @@ public class Menu {
     }
 
     private void initMenuCategory() {
-        for (String menuCategory : MenuCategory.getKeyList()) {
+        for (String menuCategory : MenuCategory.getStrKeyList()) {
             menuMap.put(menuCategory, initSubCategoryMenu(menuCategory));
         }
 

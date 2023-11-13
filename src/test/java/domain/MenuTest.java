@@ -1,5 +1,6 @@
 package domain;
 
+import static enums.MenuCategory.MENU_MAIN;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,7 +28,7 @@ class MenuTest {
         // give
         int menuCatogoryCount = MenuCategory.values().length;
         // when
-        int menuCatogorys = MenuCategory.getKeyList().size();
+        int menuCatogorys = MenuCategory.getStrKeyList().size();
         // then
         assertEquals(menuCatogoryCount, menuCatogorys);
     }
@@ -51,6 +52,16 @@ class MenuTest {
         );
     }
 
+    @DisplayName("특정 메뉴에 해당하는 판매 메뉴의 카테고리(애피타이저, 메인, 디저트, 음료)를 반환")
+    @Test
+    void 특정_메뉴에_해당하는_판매_메뉴의_카테고리를_반환() {
+        // give
+        String menuName = "티본스테이크";
+        // when
+        String menuCategory = MenuCategory.findCategoryByMenuName(menuName).getName();
+        // then
+        assertEquals(MENU_MAIN.getName(), menuCategory);
+    }
 
     // @TODO: 음료만 주문했는지 확인하기, 단, 음료이외에 주문할 수 없는 메뉴도 포함되어 있는지 먼저 체크
 }
