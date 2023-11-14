@@ -31,12 +31,17 @@ public class VisitDate {
 
     public boolean rangeIn25Day(String userInputDay) {
         try {
-            Integer dayOfMonth = (MonthDay.of(EVENT_MONTH.getValue(), Integer.valueOf(userInputDay))).getDayOfMonth();
+            Integer dayOfMonth = parseDayOfMonth(userInputDay);
             return dayOfMonth >= XMAS_DDAY_START_DATE.getValue() && dayOfMonth <= XMAS_DDAY_END_DATE.getValue();
         }  catch (DateTimeParseException e) { // 잘못된 날짜 형식입니다.
             return false;
         }  catch (Exception e) {
             return false;
         }
+    }
+
+    private Integer parseDayOfMonth(String dayOfMonth) {
+        return (MonthDay.of(EVENT_MONTH.getValue(), Integer.valueOf(dayOfMonth)))
+                .getDayOfMonth();
     }
 }
