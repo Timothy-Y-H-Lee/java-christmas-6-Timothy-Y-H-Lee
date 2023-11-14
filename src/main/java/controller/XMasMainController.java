@@ -29,6 +29,11 @@ public class XMasMainController {
         this.xMasDayDiscount();
         this.weekdaysDiscount();
         this.weekendDiscount();
+        this.specialDiscount();
+    }
+
+    private void specialDiscount() {
+        isSpecialDiscount = VisitDate.getInstance().isSpecialDiscountDay(visitDay);
     }
 
     private void weekendDiscount() {
