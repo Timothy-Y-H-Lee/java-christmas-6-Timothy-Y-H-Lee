@@ -5,6 +5,7 @@ public enum EventDateRule {
     EVENT_END_MONTH_DATE(31),
     XMAS_DDAY_START_DATE(1),
     XMAS_DDAY_END_DATE(25),
+    EVENT_YEAR(2023),
     EVENT_MONTH(12)
     ;
     private Integer value;

@@ -41,4 +41,18 @@ class VisitDateTest {
         assertFalse(VisitDate.getInstance().rangeIn25Day(userInputDay));
     }
 
+    @DisplayName("특별할인에 해당되는지 확인")
+    @ParameterizedTest(name = "{index}. {displayName} userInput: {0}")
+    @ValueSource(strings = {"3", "17", "25"})
+    void specialDiscount(String userInput) {
+        assertTrue(VisitDate.getInstance().isSpecialDiscountDay(userInput));
+    }
+
+    @DisplayName("특별할인에 해당이 안되는지 확인")
+    @ParameterizedTest(name = "{index}. {displayName} userInput: {0}")
+    @ValueSource(strings = {"7", "12", "26"})
+    void notSpecialDiscount(String userInput) {
+        assertFalse(VisitDate.getInstance().isSpecialDiscountDay(userInput));
+    }
+
 }
