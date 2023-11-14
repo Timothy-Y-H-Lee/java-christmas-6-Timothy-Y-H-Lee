@@ -61,11 +61,26 @@ class VisitDateTest {
     void weekendDiscount(String userInput) {
         assertTrue(VisitDate.getInstance().isWeekendDiscountDay(userInput));
     }
+
     @DisplayName("주말 할인(금요일, 토요일)에 해당이 안되는지 확인")
     @ParameterizedTest(name = "{index}. {displayName} userInput: {0}")
     @ValueSource(strings = {"4", "10", "28"})
     void notWeekendDiscount(String userInput) {
         assertFalse(VisitDate.getInstance().isWeekendDiscountDay(userInput));
+    }
+
+    @DisplayName("평일 할인(일요일~목요일)에 해당되는지 확인")
+    @ParameterizedTest(name = "{index}. {displayName} userInput: {0}")
+    @ValueSource(strings = {"3", "17", "26"})
+    void weekDaysDiscount(String userInput) {
+        assertTrue(VisitDate.getInstance().isWeekDaysDiscountDay(userInput));
+    }
+
+    @DisplayName("평일 할인(일요일~목요일)에 해당이 안되는지 확인")
+    @ParameterizedTest(name = "{index}. {displayName} userInput: {0}")
+    @ValueSource(strings = {"8", "9", "16"})
+    void notWeekDaysDiscount(String userInput) {
+        assertFalse(VisitDate.getInstance().isWeekDaysDiscountDay(userInput));
     }
 
 
