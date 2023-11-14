@@ -26,10 +26,15 @@ public class XMasMainController {
     }
 
     private void checkDiscountDays() {
-        this.isXMasDayDiscount();
+        this.xMasDayDiscount();
+        this.weekdaysDiscount();
     }
 
-    private void isXMasDayDiscount() {
+    private void weekdaysDiscount() {
+        isWeekdaysDiscount = VisitDate.getInstance().isWeekDaysDiscountDay(visitDay);
+    }
+
+    private void xMasDayDiscount() {
         isXMasDayDiscount = VisitDate.getInstance().rangeIn25Day(visitDay);
     }
 
