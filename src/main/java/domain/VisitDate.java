@@ -60,4 +60,15 @@ public class VisitDate {
         }
     }
 
+    // 주말(금, 토)에 해당되는 날인지 체크
+    public boolean isWeekendDiscountDay(String userInput) {
+        try {
+            DayOfWeek day = (LocalDate.of(EVENT_YEAR.getValue(), EVENT_MONTH.getValue(),
+                    parseDayOfMonth(userInput))).getDayOfWeek();
+            return day == DayOfWeek.FRIDAY || day == DayOfWeek.SATURDAY;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
