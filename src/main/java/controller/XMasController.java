@@ -36,6 +36,7 @@ public class XMasController {
         outputView.printDiscountDetails(xMasService.getDiscountDetails(visitDay));
         outputView.printTotalDiscountDetails(xMasService.getTotalDiscountDetailsPrice());
         outputView.printAfterTotalDiscountPrice(xMasService.getAfterTotalDiscountPrice());
+        outputView.printEventBadge(xMasService.getTotalDiscountDetailsPrice());
     }
 
     private void checkDiscountDays() {

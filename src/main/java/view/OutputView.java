@@ -4,6 +4,10 @@ import static enums.GiftMenuName.GIFT_MENU_NAME;
 import static enums.UserInterface.AFTER_TOTAL_DISCOUNT_PRICE_TITLE;
 import static enums.UserInterface.BEFORE_DISCOUNT_TOTAL_PRICE_TITLE;
 import static enums.UserInterface.DISCOUNT_DETAILS_TITLE;
+import static enums.UserInterface.EVENT_BADGE_SANTA;
+import static enums.UserInterface.EVENT_BADGE_STAR;
+import static enums.UserInterface.EVENT_BADGE_TITLE;
+import static enums.UserInterface.EVENT_BADGE_TREE;
 import static enums.UserInterface.GIFT_MENU_TITLE;
 import static enums.UserInterface.NOTTHING;
 import static enums.UserInterface.ORDER_MENU_TITLE;
@@ -62,6 +66,19 @@ public class OutputView {
         }
         if (discountPrice > 0) {
             System.out.println(String.format("%,d원", discountPrice) + System.lineSeparator());
+        }
+    }
+
+    public void printEventBadge(Integer discountPrice) {
+        if (0 < discountPrice && discountPrice >= 5_000) {
+            System.out.println(EVENT_BADGE_STAR.getValue() + System.lineSeparator());
+        }
+        if (5_000 < discountPrice && discountPrice >= 10_000) {
+            System.out.println(EVENT_BADGE_TREE.getValue() + System.lineSeparator());
+        }
+        System.out.println(EVENT_BADGE_TITLE.getValue());
+        if (10_000 < discountPrice && discountPrice >= 20_000) {
+            System.out.println(EVENT_BADGE_SANTA.getValue() + System.lineSeparator());
         }
     }
 }
