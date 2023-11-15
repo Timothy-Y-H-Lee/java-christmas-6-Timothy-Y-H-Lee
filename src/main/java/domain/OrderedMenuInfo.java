@@ -195,6 +195,7 @@ public class OrderedMenuInfo {
         calcWeekendDiscountPrice(visitDay);
         calcSpecialDayDiscountPrice(visitDay);
         calcGiveGiftMenu();
+        calcResultPrice();
         return discountDetails;
     }
 
@@ -252,12 +253,6 @@ public class OrderedMenuInfo {
     }
 
     private void calcResultPrice() {
-//        xMasDayDiscountPrice
-//            weekDaysyDiscountPrice
-//        weekEndDiscountPrice
-//                specialDayDiscountPrice
-//        giftEventDiscountPrice
-
         Integer middleSum =
                 xMasDayDiscountPrice + weekDaysyDiscountPrice + weekEndDiscountPrice + specialDayDiscountPrice;
         if (shouldGiveGiveMenu) {
@@ -267,6 +262,14 @@ public class OrderedMenuInfo {
             // 할인 후 예상 결제 금액
             afterTotalDiscountPrice = beforeDiscountTotalPrice - middleSum;
         }
+    }
+
+    public Integer getTotalDiscountDetailsPrice() {
+        return totalDiscountDetailsPrice;
+    }
+
+    public Integer getAfterTotalDiscountPrice() {
+        return afterTotalDiscountPrice;
     }
 
     public Integer findOrderedQuantityByMenuName(MenuCategory category) {

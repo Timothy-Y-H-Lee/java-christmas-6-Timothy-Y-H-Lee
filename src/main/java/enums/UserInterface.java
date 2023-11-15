@@ -19,6 +19,8 @@ public enum UserInterface {
     BEFORE_DISCOUNT_TOTAL_PRICE_TITLE("<할인 전 총주문 금액>"),
     GIFT_MENU_TITLE("<증정 메뉴>"),
     DISCOUNT_DETAILS_TITLE("<혜택 내역>"),
+    TOTAL_DISCOUNT_PRICE_TITLE("<총혜택 금액>"),
+    AFTER_TOTAL_DISCOUNT_PRICE_TITLE("<할인 후 예상 결제 금액>"),
     DISCOUNT_DETAILS_XMAS_DAY_DISCOUNT("크리스마스 디데이 할인: -"),
     DISCOUNT_DETAILS_WEEK_DAYS_DISCOUNT("평일 할인: -"),
     DISCOUNT_DETAILS_WEEKEND_DISCOUNT("주말 할인: -"),

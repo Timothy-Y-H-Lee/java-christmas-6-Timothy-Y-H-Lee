@@ -55,4 +55,11 @@ public class XMasService {
     public String getDiscountDetails(String visitDay) {
         return orderedMenuInfo.getDiscountDetails(visitDay);
     }
+
+    public Integer getTotalDiscountDetailsPrice() {
+        return orderedMenuInfo.getTotalDiscountDetailsPrice();
+    }
+    public Integer getAfterTotalDiscountPrice() {
+        return orderedMenuInfo.getAfterTotalDiscountPrice();
+    }
 }

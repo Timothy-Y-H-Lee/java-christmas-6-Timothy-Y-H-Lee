@@ -1,11 +1,13 @@
 package view;
 
 import static enums.GiftMenuName.GIFT_MENU_NAME;
+import static enums.UserInterface.AFTER_TOTAL_DISCOUNT_PRICE_TITLE;
 import static enums.UserInterface.BEFORE_DISCOUNT_TOTAL_PRICE_TITLE;
 import static enums.UserInterface.DISCOUNT_DETAILS_TITLE;
 import static enums.UserInterface.GIFT_MENU_TITLE;
 import static enums.UserInterface.NOTTHING;
 import static enums.UserInterface.ORDER_MENU_TITLE;
+import static enums.UserInterface.TOTAL_DISCOUNT_PRICE_TITLE;
 
 import java.util.Map;
 
@@ -40,6 +42,26 @@ public class OutputView {
         }
         if (!discountDetails.isEmpty()) {
             System.out.println(discountDetails + System.lineSeparator());
+        }
+    }
+
+    public void printTotalDiscountDetails(Integer discountPrice) {
+        System.out.println(TOTAL_DISCOUNT_PRICE_TITLE.getValue());
+        if (discountPrice <= 0) {
+            System.out.println(NOTTHING.getValue() + System.lineSeparator());
+        }
+        if (discountPrice > 0) {
+            System.out.println(String.format("-%,d원", discountPrice) + System.lineSeparator());
+        }
+    }
+
+    public void printAfterTotalDiscountPrice(Integer discountPrice) {
+        System.out.println(AFTER_TOTAL_DISCOUNT_PRICE_TITLE.getValue());
+        if (discountPrice <= 0) {
+            System.out.println(NOTTHING.getValue() + System.lineSeparator());
+        }
+        if (discountPrice > 0) {
+            System.out.println(String.format("%,d원", discountPrice) + System.lineSeparator());
         }
     }
 }
