@@ -2,6 +2,7 @@ package service;
 
 import domain.DiscountInfo;
 import domain.OrderedMenuInfo;
+import java.util.Map;
 
 public class XMasService {
     DiscountInfo discountInfo = new DiscountInfo();
@@ -37,5 +38,9 @@ public class XMasService {
 
     public void orderedMenu(String userInputOrderedMenu) {
         orderedMenuInfo.userInputOrderedMenu(userInputOrderedMenu);
+    }
+
+    public Map<String, Integer> getUserInputOrderedMenu() {
+        return orderedMenuInfo.getUserInputOrderedMenu();
     }
 }

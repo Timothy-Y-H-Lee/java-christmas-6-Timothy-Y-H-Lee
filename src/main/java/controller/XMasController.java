@@ -2,24 +2,36 @@ package controller;
 
 import static enums.EventDateRule.EVENT_MONTH;
 import static enums.UserInterface.ILLEGAL_MENU_ORDER;
+import static enums.UserInterface.PREVIEW_EVENT_MESSAGE;
 import static enums.UserInterface.INVALIDATE_INPUT_VISIT_DAY;
+import static enums.UserInterface.WELLCOME_MESSAGE;
 
 import java.time.MonthDay;
 import service.XMasService;
 import view.InputView;
+import view.OutputView;
 
 public class XMasController {
     private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
 
     private XMasService xMasService = XMasService.getInstance();
 
     private String visitDay;
 
     public void startXmasEvent() {
+        inputView.printMessage(WELLCOME_MESSAGE.getValue());
         readDate();
         xMasService.setVisitDay(visitDay);
         checkDiscountDays();
         readOrderedMenu();
+        inputView.printMessage(String.format(PREVIEW_EVENT_MESSAGE.getValue(), visitDay));
+        outputView.printOrderMenu(xMasService.getUserInputOrderedMenu());
+        processDiscount();
+    }
+
+    private void processDiscount() {
+
     }
 
     private void checkDiscountDays() {
