@@ -46,10 +46,10 @@ public class XMasController {
 
     public void readDate() {
         try {
-            String readDate = inputView.readDate();
-            MonthDay.of(EVENT_MONTH.getValue(), Integer.valueOf(readDate));
-            this.visitDay = readDate;
-        } catch (Exception e) {
+            String strReadDate = inputView.readDate();
+            MonthDay.of(EVENT_MONTH.getValue(), Integer.valueOf(strReadDate));
+            this.visitDay = strReadDate;
+        } catch (IllegalArgumentException e) {
             inputView.printMessage(INVALIDATE_INPUT_VISIT_DAY.getValue());
             readDate();
         }
