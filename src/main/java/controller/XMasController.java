@@ -33,6 +33,7 @@ public class XMasController {
     private void processDiscount() {
         outputView.printBeforeDiscountTotalPrice(xMasService.getBeforeDiscountTotalPrice());
         outputView.printGiftMenu(xMasService.shouldGiveGiftMenu());
+        outputView.printDiscountDetails(xMasService.getDiscountDetails(visitDay));
     }
 
     private void checkDiscountDays() {

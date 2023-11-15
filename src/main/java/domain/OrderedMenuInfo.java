@@ -1,5 +1,6 @@
 package domain;
 
+import static enums.UserInterface.DISCOUNT_DETAILS_XMAS_DAY_DISCOUNT;
 import static enums.UserInterface.ILLEGAL_CANNOT_MENU_ORDER_ONLY_DRINK;
 import static enums.UserInterface.ILLEGAL_CANNOT_MENU_ORDER_OVER_20;
 import static enums.UserInterface.ILLEGAL_MENU_ORDER;
@@ -22,6 +23,14 @@ public class OrderedMenuInfo {
     private Integer beforeDiscountTotalPrice = 0;
 
     private Boolean shouldGiveGiveMenu = false; // 증정메뉴의 증정 여부
+
+    private String discountDetails = "";
+    private Boolean isSetxMasDayDiscountPrice = false;
+    private Integer xMasDayDiscountPrice = 0; // 크리스마스 디데이 할인
+
+    private Integer totalDiscountDetailsPrice = 0; // 총 혜택 금액 + 증정 이벤트
+    private Integer beforeTotalDiscountDetailsPrice = 0; // 총 혜택 금액 - 증정 이벤트
+    private Integer afterTotalDiscountPrice = 0; // 할인 후 예상 결제 금액
 
     public Map<String, Integer> getUserInputOrderedMenu() {
         return userInputOrderedMenu;
@@ -162,5 +171,21 @@ public class OrderedMenuInfo {
 
     private void checkShouldGiveGiftMenu() {
         this.shouldGiveGiveMenu = (getBeforeDiscountTotalPrice() >= GiftMenuPrice.GIFT_MENU_PRICE.getValue());
+    }
+
+    public String getDiscountDetails(String visitDay) {
+        calcXMasDiscountPrice(visitDay);
+        return discountDetails;
+    }
+
+    // 크리스마스 디데이 할인
+    private void calcXMasDiscountPrice(String visitDay) {
+        isSetxMasDayDiscountPrice = VisitDate.getInstance().rangeIn25Day(visitDay);
+        if (isSetxMasDayDiscountPrice) {
+            Integer dayOfMonth = VisitDate.getInstance().parseDayOfMonth(visitDay);
+            xMasDayDiscountPrice = (dayOfMonth - 1) * 100 + 1000;
+            discountDetails += DISCOUNT_DETAILS_XMAS_DAY_DISCOUNT.getValue()
+                    + String.format("%,d원", xMasDayDiscountPrice);
+        }
     }
 }

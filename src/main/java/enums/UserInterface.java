@@ -17,7 +17,13 @@ public enum UserInterface {
     PREVIEW_EVENT_MESSAGE("12월 %s일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!" + System.lineSeparator()),
     ORDER_MENU_TITLE("<주문 메뉴>"),
     BEFORE_DISCOUNT_TOTAL_PRICE_TITLE("<할인 전 총주문 금액>"),
-    GIFT_MENU_TITLE("<증정 메뉴>")
+    GIFT_MENU_TITLE("<증정 메뉴>"),
+    DISCOUNT_DETAILS_TITLE("<혜택 내역>"),
+    DISCOUNT_DETAILS_XMAS_DAY_DISCOUNT("크리스마스 디데이 할인: -"),
+    DISCOUNT_DETAILS_WEEK_DAYS_DISCOUNT("평일 할인: -"),
+    DISCOUNT_DETAILS_WEEKEND_DISCOUNT("주말 할인: -"),
+    DISCOUNT_DETAILS_SPECIAL_DISCOUNT("특별 할인: -"),
+    DISCOUNT_DETAILS_GIFT_EVENT("증정 이벤트: -"),
     ;
 
     private String value;

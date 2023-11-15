@@ -43,7 +43,7 @@ public class VisitDate {
         }
     }
 
-    private Integer parseDayOfMonth(String dayOfMonth) {
+    public Integer parseDayOfMonth(String dayOfMonth) {
         return (MonthDay.of(EVENT_MONTH.getValue(), Integer.valueOf(dayOfMonth)))
                 .getDayOfMonth();
     }

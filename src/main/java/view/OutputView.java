@@ -2,6 +2,7 @@ package view;
 
 import static enums.GiftMenuName.GIFT_MENU_NAME;
 import static enums.UserInterface.BEFORE_DISCOUNT_TOTAL_PRICE_TITLE;
+import static enums.UserInterface.DISCOUNT_DETAILS_TITLE;
 import static enums.UserInterface.GIFT_MENU_TITLE;
 import static enums.UserInterface.NOTTHING;
 import static enums.UserInterface.ORDER_MENU_TITLE;
@@ -29,6 +30,16 @@ public class OutputView {
         }
         if (!hasGiftMent) {
             System.out.println(NOTTHING.getValue() + System.lineSeparator());
+        }
+    }
+
+    public void printDiscountDetails(String discountDetails) {
+        System.out.println(DISCOUNT_DETAILS_TITLE.getValue());
+        if (discountDetails.isEmpty()) {
+            System.out.println(NOTTHING.getValue() + System.lineSeparator());
+        }
+        if (!discountDetails.isEmpty()) {
+            System.out.println(discountDetails + System.lineSeparator());
         }
     }
 }

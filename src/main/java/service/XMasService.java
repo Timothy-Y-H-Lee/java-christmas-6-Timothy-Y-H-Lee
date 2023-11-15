@@ -51,4 +51,8 @@ public class XMasService {
     public Boolean shouldGiveGiftMenu() {
         return orderedMenuInfo.shouldGiveGiftMenu();
     }
+
+    public String getDiscountDetails(String visitDay) {
+        return orderedMenuInfo.getDiscountDetails(visitDay);
+    }
 }
