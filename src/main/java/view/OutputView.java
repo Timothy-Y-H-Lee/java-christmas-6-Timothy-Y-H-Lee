@@ -45,7 +45,7 @@ public class OutputView {
             System.out.println(NOTTHING.getValue() + System.lineSeparator());
         }
         if (!discountDetails.isEmpty()) {
-            System.out.println(discountDetails + System.lineSeparator());
+            System.out.println(discountDetails);
         }
     }
 
