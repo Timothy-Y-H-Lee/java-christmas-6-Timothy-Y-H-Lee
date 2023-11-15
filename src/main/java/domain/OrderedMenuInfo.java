@@ -1,5 +1,8 @@
 package domain;
 
+import static enums.DiscountDaysMenu.WEEKDAYS_DISCOUNT_MENU;
+import static enums.DiscountDaysMenuPrice.WEEKDAYS_DISCOUNT_MENU_PER_PRICE;
+import static enums.UserInterface.DISCOUNT_DETAILS_WEEK_DAYS_DISCOUNT;
 import static enums.UserInterface.DISCOUNT_DETAILS_XMAS_DAY_DISCOUNT;
 import static enums.UserInterface.ILLEGAL_CANNOT_MENU_ORDER_ONLY_DRINK;
 import static enums.UserInterface.ILLEGAL_CANNOT_MENU_ORDER_OVER_20;
@@ -26,7 +29,9 @@ public class OrderedMenuInfo {
 
     private String discountDetails = "";
     private Boolean isSetxMasDayDiscountPrice = false;
+    private Boolean isSetWeekDaysyDiscountPrice = false;
     private Integer xMasDayDiscountPrice = 0; // 크리스마스 디데이 할인
+    private Integer weekDaysyDiscountPrice = 0; // 평일 할인
 
     private Integer totalDiscountDetailsPrice = 0; // 총 혜택 금액 + 증정 이벤트
     private Integer beforeTotalDiscountDetailsPrice = 0; // 총 혜택 금액 - 증정 이벤트
@@ -175,6 +180,7 @@ public class OrderedMenuInfo {
 
     public String getDiscountDetails(String visitDay) {
         calcXMasDiscountPrice(visitDay);
+        calcWeekdaysDiscountPrice(visitDay);
         return discountDetails;
     }
 
@@ -185,7 +191,31 @@ public class OrderedMenuInfo {
             Integer dayOfMonth = VisitDate.getInstance().parseDayOfMonth(visitDay);
             xMasDayDiscountPrice = (dayOfMonth - 1) * 100 + 1000;
             discountDetails += DISCOUNT_DETAILS_XMAS_DAY_DISCOUNT.getValue()
-                    + String.format("%,d원", xMasDayDiscountPrice);
+                    + String.format("%,d원", xMasDayDiscountPrice) + System.lineSeparator();
         }
+    }
+
+    // 평일 할인(일요일~목요일)
+    private void calcWeekdaysDiscountPrice(String visitDay) {
+        isSetWeekDaysyDiscountPrice = VisitDate.getInstance().isWeekDaysDiscountDay(visitDay);
+        if (isSetWeekDaysyDiscountPrice) {
+            weekDaysyDiscountPrice = findOrderedQuantityByMenuName(WEEKDAYS_DISCOUNT_MENU.getValue())
+                    * WEEKDAYS_DISCOUNT_MENU_PER_PRICE.getValue();
+            discountDetails += DISCOUNT_DETAILS_WEEK_DAYS_DISCOUNT.getValue()
+                    + String.format("%,d원", weekDaysyDiscountPrice) + System.lineSeparator();
+        }
+    }
+
+    public Integer findOrderedQuantityByMenuName(MenuCategory category) {
+        return userInputOrderedMenu.entrySet().stream()
+                .filter(entry -> isMenuInCategory(entry.getKey(), category))
+                .mapToInt(Map.Entry::getValue)
+                .sum();
+    }
+
+    private boolean isMenuInCategory(String menuName, MenuCategory category) {
+        return Arrays.stream(MenuName.values())
+                .filter(menu -> menu.getValue().equals(menuName))
+                .anyMatch(menu -> menu.getName().startsWith(category.getName()));
     }
 }
