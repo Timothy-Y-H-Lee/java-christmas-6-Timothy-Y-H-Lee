@@ -49,7 +49,7 @@ public class XMasController {
             String strReadDate = inputView.readDate();
             MonthDay.of(EVENT_MONTH.getValue(), Integer.valueOf(strReadDate));
             this.visitDay = strReadDate;
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException | IllegalArgumentException e) {
             inputView.printMessage(INVALIDATE_INPUT_VISIT_DAY.getValue());
             readDate();
         }
@@ -58,7 +58,7 @@ public class XMasController {
     private void readOrderedMenu() {
         try {
             xMasService.orderedMenu(inputView.readOrderedMenu());
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException | IllegalArgumentException e) {
             inputView.printMessage(ILLEGAL_MENU_ORDER.getValue());
             readOrderedMenu();
         }

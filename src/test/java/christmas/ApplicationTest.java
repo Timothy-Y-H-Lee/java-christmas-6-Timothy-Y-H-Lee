@@ -49,6 +49,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 음료만_주문_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "레드와인-1");
+            assertThat(output()).contains("[ERROR] 음료만 주문 시, 주문할 수 없습니다.");
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
