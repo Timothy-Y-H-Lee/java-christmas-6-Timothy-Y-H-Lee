@@ -4,6 +4,8 @@ import static enums.DiscountDaysMenu.WEEKDAYS_DISCOUNT_MENU;
 import static enums.DiscountDaysMenu.WEEKEND_DISCOUNT_MENU;
 import static enums.DiscountDaysMenuPrice.WEEKDAYS_DISCOUNT_MENU_PER_PRICE;
 import static enums.DiscountDaysMenuPrice.WEEKEND_DISCOUNT_MENU_PER_PRICE;
+import static enums.GiftMenuPrice.GIFT_MENU_PRICE;
+import static enums.UserInterface.DISCOUNT_DETAILS_GIFT_EVENT;
 import static enums.UserInterface.DISCOUNT_DETAILS_SPECIAL_DISCOUNT;
 import static enums.UserInterface.DISCOUNT_DETAILS_WEEKEND_DISCOUNT;
 import static enums.UserInterface.DISCOUNT_DETAILS_WEEK_DAYS_DISCOUNT;
@@ -40,6 +42,7 @@ public class OrderedMenuInfo {
     private Integer weekDaysyDiscountPrice = 0; // 평일 할인
     private Integer weekEndDiscountPrice = 0; // 주말 할인
     private Integer specialDayDiscountPrice = 0; // 특별 할인
+    private Integer giftEventDiscountPrice = 0; // 증정 이벤트 여부에 따른 금액
 
     private Integer totalDiscountDetailsPrice = 0; // 총 혜택 금액 + 증정 이벤트
     private Integer beforeTotalDiscountDetailsPrice = 0; // 총 혜택 금액 - 증정 이벤트
@@ -191,6 +194,7 @@ public class OrderedMenuInfo {
         calcWeekdaysDiscountPrice(visitDay);
         calcWeekendDiscountPrice(visitDay);
         calcSpecialDayDiscountPrice(visitDay);
+        calcGiveGiftMenu();
         return discountDetails;
     }
 
@@ -234,6 +238,16 @@ public class OrderedMenuInfo {
             specialDayDiscountPrice = 1000;
             discountDetails += DISCOUNT_DETAILS_SPECIAL_DISCOUNT.getValue()
                     + String.format("%,d원", specialDayDiscountPrice) + System.lineSeparator();
+        }
+    }
+
+    // 증정 이벤트
+    private void calcGiveGiftMenu() {
+        checkShouldGiveGiftMenu();
+        if (shouldGiveGiveMenu) {
+            giftEventDiscountPrice = GIFT_MENU_PRICE.getValue();
+            discountDetails += DISCOUNT_DETAILS_GIFT_EVENT.getValue()
+                    + String.format("%,d원", GIFT_MENU_PRICE.getValue()) + System.lineSeparator();
         }
     }
 
