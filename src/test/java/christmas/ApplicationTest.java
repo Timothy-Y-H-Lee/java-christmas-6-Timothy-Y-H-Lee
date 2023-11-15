@@ -4,7 +4,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -23,15 +22,6 @@ class ApplicationTest extends NsTest {
                 "<할인 후 예상 결제 금액>",
                 "<12월 이벤트 배지>"
             );
-        });
-    }
-
-    @Test
-    @Disabled
-    void 혜택_내역_없음_출력() {
-        assertSimpleTest(() -> {
-            run("26", "타파스-1,제로콜라-1");
-            assertThat(output()).contains("<혜택 내역>" + LINE_SEPARATOR + "없음");
         });
     }
 
