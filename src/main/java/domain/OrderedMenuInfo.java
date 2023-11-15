@@ -1,6 +1,7 @@
 package domain;
 
 import static enums.UserInterface.ILLEGAL_CANNOT_MENU_ORDER_ONLY_DRINK;
+import static enums.UserInterface.ILLEGAL_CANNOT_MENU_ORDER_OVER_20;
 import static enums.UserInterface.ILLEGAL_MENU_ORDER;
 
 import enums.MenuCategory;
@@ -24,8 +25,16 @@ public class OrderedMenuInfo {
     public void userInputOrderedMenu(String orderedMenu) {
         Map<String, Integer> tempOrderedMenu = splitMenuAndQuantity(orderedMenu);
         userInputOrderedMenu = checkExistMenu(tempOrderedMenu);
-        if (isOnlyOrderedDrink()) {
+        moreRequestOrderValidator();
+    }
+
+    private void moreRequestOrderValidator() {
+        if (isOnlyOrderedDrink()) { // 음료만 주문 시, 주문할 수 없습니다.
             new InputView().printMessage(ILLEGAL_CANNOT_MENU_ORDER_ONLY_DRINK.getValue());
+            throw new IllegalArgumentException(ILLEGAL_MENU_ORDER.getValue());
+        }
+        if (isMenuOrderOver20()) { // 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.(제로콜라-3, 아이스크림-1 : 4개)
+            new InputView().printMessage(ILLEGAL_CANNOT_MENU_ORDER_OVER_20.getValue());
             throw new IllegalArgumentException(ILLEGAL_MENU_ORDER.getValue());
         }
     }
@@ -77,6 +86,11 @@ public class OrderedMenuInfo {
     // 중복된 메뉴명이 있음
     private Integer checkForDuplicateKeys(Integer existing, Integer replacement) {
         throw new IllegalArgumentException(ILLEGAL_MENU_ORDER.getValue());
+    }
+
+    // 주문한 메뉴의 갯수가 20개 초과인지 체크
+    public Boolean isMenuOrderOver20() {
+        return userInputOrderedMenu.values().stream().mapToInt(Integer::intValue).sum() > 20;
     }
 
     // 음료만 주문했는지 체크
