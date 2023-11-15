@@ -180,7 +180,7 @@ public class OrderedMenuInfo {
     }
 
     private void checkShouldGiveGiftMenu() {
-        this.shouldGiveGiveMenu = (getBeforeDiscountTotalPrice() >= GiftMenuPrice.GIFT_MENU_PRICE.getValue());
+        this.shouldGiveGiveMenu = (getBeforeDiscountTotalPrice() >= GiftMenuPrice.GIFT_MENU_PRICE_CRITERIAL.getValue());
     }
 
     public String getDiscountDetails(String visitDay) {
