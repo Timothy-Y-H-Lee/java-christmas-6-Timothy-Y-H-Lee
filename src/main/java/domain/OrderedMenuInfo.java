@@ -27,9 +27,7 @@ public class OrderedMenuInfo {
         Set<String> validMenuNames = Set.of(MenuName.values()).stream().map(MenuName::getValue)
                 .collect(Collectors.toSet());
         for (String orderedMenu : orderedMenuMap.keySet()) {
-            if (!validMenuNames.contains(orderedMenu)) {
-                throw new IllegalArgumentException(ILLEGAL_MENU_ORDER.getValue());
-            }
+            if (!validMenuNames.contains(orderedMenu)) throw new IllegalArgumentException(ILLEGAL_MENU_ORDER.getValue());
         }
         return orderedMenuMap;
     }
