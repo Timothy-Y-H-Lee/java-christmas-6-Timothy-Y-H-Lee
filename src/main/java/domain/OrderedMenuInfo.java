@@ -205,6 +205,8 @@ public class OrderedMenuInfo {
         if (isSetxMasDayDiscountPrice) {
             Integer dayOfMonth = VisitDate.getInstance().parseDayOfMonth(visitDay);
             xMasDayDiscountPrice = (dayOfMonth - 1) * 100 + 1000;
+        }
+        if (isSetxMasDayDiscountPrice && xMasDayDiscountPrice > 0) {
             discountDetails += DISCOUNT_DETAILS_XMAS_DAY_DISCOUNT.getValue()
                     + String.format("%,d원", xMasDayDiscountPrice) + System.lineSeparator();
         }
@@ -229,6 +231,8 @@ public class OrderedMenuInfo {
         if (isSetWeekEndDiscountPrice) {
             weekEndDiscountPrice = findOrderedQuantityByMenuName(WEEKEND_DISCOUNT_MENU.getValue())
                     * WEEKEND_DISCOUNT_MENU_PER_PRICE.getValue();
+        }
+        if (isSetWeekEndDiscountPrice && weekEndDiscountPrice > 0) {
             discountDetails += DISCOUNT_DETAILS_WEEKEND_DISCOUNT.getValue()
                     + String.format("%,d원", weekEndDiscountPrice) + System.lineSeparator();
         }
