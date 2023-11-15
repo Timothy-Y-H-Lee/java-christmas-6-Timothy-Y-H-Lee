@@ -3,25 +3,20 @@ package controller;
 import static enums.EventDateRule.EVENT_MONTH;
 import static enums.UserInterface.INVALIDATE_INPUT_VISIT_DAY;
 
-import domain.VisitDate;
 import java.time.MonthDay;
+import service.XMasService;
 import view.InputView;
 
-public class XMasMainController {
+public class XMasController {
     private InputView inputView = new InputView();
-    private String visitDay;
-    // 크리스마스 디데이 할인 여부
-    private Boolean isXMasDayDiscount = false;
-    // 평일 할인 여부
-    private Boolean isWeekdaysDiscount = false;
-    // 주말 할인 여부
-    private Boolean isWeekendDiscount = false;
-    // 특별 할인 여부
-    private Boolean isSpecialDiscount = false;
 
+    private XMasService xMasService = XMasService.getInstance();
+
+    private String visitDay;
 
     public void startXmasEvent() {
         readDate();
+        xMasService.setVisitDay(visitDay);
         checkDiscountDays();
     }
 
@@ -33,18 +28,18 @@ public class XMasMainController {
     }
 
     private void specialDiscount() {
-        isSpecialDiscount = VisitDate.getInstance().isSpecialDiscountDay(visitDay);
+        xMasService.specialDiscount(visitDay);
     }
 
     private void weekendDiscount() {
-        isWeekendDiscount = VisitDate.getInstance().isWeekendDiscountDay(visitDay);
+        xMasService.weekendDiscount(visitDay);
     }
     private void weekdaysDiscount() {
-        isWeekdaysDiscount = VisitDate.getInstance().isWeekDaysDiscountDay(visitDay);
+        xMasService.weekdaysDiscount(visitDay);
     }
 
     private void xMasDayDiscount() {
-        isXMasDayDiscount = VisitDate.getInstance().rangeIn25Day(visitDay);
+        xMasService.xMasDayDiscount(visitDay);
     }
 
     public void readDate() {

@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class XMasMainControllerTest extends NsTest {
+class XMasControllerTest extends NsTest {
     @DisplayName("InputView로 방문 일자를 입력받기")
     @Test
     void InputView로_방문_일자를_입력받기() {

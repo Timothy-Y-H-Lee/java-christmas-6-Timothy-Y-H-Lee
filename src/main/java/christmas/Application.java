@@ -1,9 +1,9 @@
 package christmas;
 
-import controller.XMasMainController;
+import controller.XMasController;
 
 public class Application {
     public static void main(String[] args) {
-        new XMasMainController().startXmasEvent();
+        new XMasController().startXmasEvent();
     }
 }
