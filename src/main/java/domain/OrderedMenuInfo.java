@@ -4,6 +4,7 @@ import static enums.UserInterface.ILLEGAL_CANNOT_MENU_ORDER_ONLY_DRINK;
 import static enums.UserInterface.ILLEGAL_CANNOT_MENU_ORDER_OVER_20;
 import static enums.UserInterface.ILLEGAL_MENU_ORDER;
 
+import enums.GiftMenuPrice;
 import enums.MenuCategory;
 import enums.MenuName;
 import enums.MenuPrice;
@@ -19,6 +20,8 @@ import view.InputView;
 public class OrderedMenuInfo {
     private Map<String, Integer> userInputOrderedMenu = new HashMap<>(); // Map<"메뉴명", 주문수량>
     private Integer beforeDiscountTotalPrice = 0;
+
+    private Boolean shouldGiveGiveMenu = false; // 증정메뉴의 증정 여부
 
     public Map<String, Integer> getUserInputOrderedMenu() {
         return userInputOrderedMenu;
@@ -150,5 +153,14 @@ public class OrderedMenuInfo {
                 .filter(menuPrice -> menuPrice.getKey().startsWith(menuNameValue))
                 .findFirst().map(MenuPrice::getValue)
                 .orElseThrow(() -> new IllegalArgumentException("가격 정보를 찾을 수 없습니다"));
+    }
+
+    public Boolean shouldGiveGiftMenu() {
+        checkShouldGiveGiftMenu();
+        return shouldGiveGiveMenu;
+    }
+
+    private void checkShouldGiveGiftMenu() {
+        this.shouldGiveGiveMenu = (getBeforeDiscountTotalPrice() >= GiftMenuPrice.GIFT_MENU_PRICE.getValue());
     }
 }

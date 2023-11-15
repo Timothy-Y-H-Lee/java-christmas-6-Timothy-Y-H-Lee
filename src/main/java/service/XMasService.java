@@ -47,4 +47,8 @@ public class XMasService {
     public Integer getBeforeDiscountTotalPrice() {
         return orderedMenuInfo.getBeforeDiscountTotalPrice();
     }
+
+    public Boolean shouldGiveGiftMenu() {
+        return orderedMenuInfo.shouldGiveGiftMenu();
+    }
 }
