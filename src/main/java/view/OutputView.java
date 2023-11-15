@@ -75,13 +75,13 @@ public class OutputView {
     }
 
     private String caseEventBadge(Integer discountPrice) {
-        if (0 < discountPrice && discountPrice >= 5_000) {
+        if (5_000 <= discountPrice && discountPrice < 10_000) {
             return EVENT_BADGE_STAR.getValue() + System.lineSeparator();
         }
-        if (5_000 < discountPrice && discountPrice >= 10_000) {
+        if (10_000 < discountPrice && discountPrice < 20_000) {
             return EVENT_BADGE_TREE.getValue() + System.lineSeparator();
         }
-        if (10_000 < discountPrice && discountPrice >= 20_000) {
+        if (discountPrice >= 20_000) {
             return EVENT_BADGE_SANTA.getValue() + System.lineSeparator();
         }
         return NOTTHING.getValue();
