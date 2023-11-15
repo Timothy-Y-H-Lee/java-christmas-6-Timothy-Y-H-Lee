@@ -251,6 +251,24 @@ public class OrderedMenuInfo {
         }
     }
 
+    private void calcResultPrice() {
+//        xMasDayDiscountPrice
+//            weekDaysyDiscountPrice
+//        weekEndDiscountPrice
+//                specialDayDiscountPrice
+//        giftEventDiscountPrice
+
+        Integer middleSum =
+                xMasDayDiscountPrice + weekDaysyDiscountPrice + weekEndDiscountPrice + specialDayDiscountPrice;
+        if (shouldGiveGiveMenu) {
+            totalDiscountDetailsPrice = middleSum + giftEventDiscountPrice; // 총 혜택 금액( + 증정 이벤트)
+            // 총 혜택 금액 - 증정 이벤트
+            beforeTotalDiscountDetailsPrice = middleSum;
+            // 할인 후 예상 결제 금액
+            afterTotalDiscountPrice = beforeDiscountTotalPrice - middleSum;
+        }
+    }
+
     public Integer findOrderedQuantityByMenuName(MenuCategory category) {
         return userInputOrderedMenu.entrySet().stream()
                 .filter(entry -> isMenuInCategory(entry.getKey(), category))
