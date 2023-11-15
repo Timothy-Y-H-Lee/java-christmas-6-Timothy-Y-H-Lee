@@ -4,6 +4,7 @@ import static enums.DiscountDaysMenu.WEEKDAYS_DISCOUNT_MENU;
 import static enums.DiscountDaysMenu.WEEKEND_DISCOUNT_MENU;
 import static enums.DiscountDaysMenuPrice.WEEKDAYS_DISCOUNT_MENU_PER_PRICE;
 import static enums.DiscountDaysMenuPrice.WEEKEND_DISCOUNT_MENU_PER_PRICE;
+import static enums.UserInterface.DISCOUNT_DETAILS_SPECIAL_DISCOUNT;
 import static enums.UserInterface.DISCOUNT_DETAILS_WEEKEND_DISCOUNT;
 import static enums.UserInterface.DISCOUNT_DETAILS_WEEK_DAYS_DISCOUNT;
 import static enums.UserInterface.DISCOUNT_DETAILS_XMAS_DAY_DISCOUNT;
@@ -34,9 +35,11 @@ public class OrderedMenuInfo {
     private Boolean isSetxMasDayDiscountPrice = false;
     private Boolean isSetWeekDaysyDiscountPrice = false;
     private Boolean isSetWeekEndDiscountPrice = false;
+    private Boolean isSpecialDiscountDayPrice = false;
     private Integer xMasDayDiscountPrice = 0; // 크리스마스 디데이 할인
     private Integer weekDaysyDiscountPrice = 0; // 평일 할인
     private Integer weekEndDiscountPrice = 0; // 주말 할인
+    private Integer specialDayDiscountPrice = 0; // 주말 할인
 
     private Integer totalDiscountDetailsPrice = 0; // 총 혜택 금액 + 증정 이벤트
     private Integer beforeTotalDiscountDetailsPrice = 0; // 총 혜택 금액 - 증정 이벤트
@@ -187,6 +190,7 @@ public class OrderedMenuInfo {
         calcXMasDiscountPrice(visitDay);
         calcWeekdaysDiscountPrice(visitDay);
         calcWeekendDiscountPrice(visitDay);
+        calcSpecialDayDiscountPrice(visitDay);
         return discountDetails;
     }
 
@@ -211,6 +215,7 @@ public class OrderedMenuInfo {
                     + String.format("%,d원", weekDaysyDiscountPrice) + System.lineSeparator();
         }
     }
+
     // 주말 할인(금요일, 토요일)
     private void calcWeekendDiscountPrice(String visitDay) {
         isSetWeekEndDiscountPrice = VisitDate.getInstance().isWeekendDiscountDay(visitDay);
@@ -219,6 +224,16 @@ public class OrderedMenuInfo {
                     * WEEKEND_DISCOUNT_MENU_PER_PRICE.getValue();
             discountDetails += DISCOUNT_DETAILS_WEEKEND_DISCOUNT.getValue()
                     + String.format("%,d원", weekEndDiscountPrice) + System.lineSeparator();
+        }
+    }
+
+    // 특별 할인(이벤트 달력에 별-일요일 또는 25일-에 있으면 할인)
+    private void calcSpecialDayDiscountPrice(String visitDay) {
+        isSpecialDiscountDayPrice = VisitDate.getInstance().isSpecialDiscountDay(visitDay);
+        if (isSpecialDiscountDayPrice) {
+            specialDayDiscountPrice = 1000;
+            discountDetails += DISCOUNT_DETAILS_SPECIAL_DISCOUNT.getValue()
+                    + String.format("%,d원", specialDayDiscountPrice) + System.lineSeparator();
         }
     }
 
