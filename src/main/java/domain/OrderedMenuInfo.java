@@ -39,7 +39,7 @@ public class OrderedMenuInfo {
     private Integer xMasDayDiscountPrice = 0; // 크리스마스 디데이 할인
     private Integer weekDaysyDiscountPrice = 0; // 평일 할인
     private Integer weekEndDiscountPrice = 0; // 주말 할인
-    private Integer specialDayDiscountPrice = 0; // 주말 할인
+    private Integer specialDayDiscountPrice = 0; // 특별 할인
 
     private Integer totalDiscountDetailsPrice = 0; // 총 혜택 금액 + 증정 이벤트
     private Integer beforeTotalDiscountDetailsPrice = 0; // 총 혜택 금액 - 증정 이벤트
