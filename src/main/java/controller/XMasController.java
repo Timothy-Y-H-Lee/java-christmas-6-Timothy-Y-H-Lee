@@ -31,7 +31,7 @@ public class XMasController {
     }
 
     private void processDiscount() {
-
+        outputView.printBeforeDiscountTotalPrice(xMasService.getBeforeDiscountTotalPrice());
     }
 
     private void checkDiscountDays() {

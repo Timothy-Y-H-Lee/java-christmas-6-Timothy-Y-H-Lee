@@ -6,6 +6,7 @@ import static enums.UserInterface.ILLEGAL_MENU_ORDER;
 
 import enums.MenuCategory;
 import enums.MenuName;
+import enums.MenuPrice;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import view.InputView;
 
 public class OrderedMenuInfo {
     private Map<String, Integer> userInputOrderedMenu = new HashMap<>(); // Map<"메뉴명", 주문수량>
+    private Integer beforeDiscountTotalPrice = 0;
 
     public Map<String, Integer> getUserInputOrderedMenu() {
         return userInputOrderedMenu;
@@ -126,5 +128,27 @@ public class OrderedMenuInfo {
                 .filter(category -> menuNameKey.startsWith(category.getName()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("메뉴명에 해당하는 카테고리를 찾을 수 없습니다: " + menuNameKey));
+    }
+
+    public Integer getBeforeDiscountTotalPrice() {
+        beforeDiscountTotalPrice = calcBeforeDiscountTotalPrice();
+        return beforeDiscountTotalPrice;
+    }
+    public Integer calcBeforeDiscountTotalPrice() {
+        return userInputOrderedMenu.entrySet().stream()
+                .mapToInt(entry -> getPriceForMenuItem(entry.getKey()) * entry.getValue())
+                .sum();
+    }
+
+    private Integer getPriceForMenuItem(String menuItem) {
+        String menuNameValue = Arrays.stream(MenuName.values())
+                .filter(menuName -> menuName.getValue().equals(menuItem))
+                .findFirst().map(MenuName::getName)
+                .orElseThrow(() -> new IllegalArgumentException("메뉴를 찾을 수 없습니다"));
+
+        return Arrays.stream(MenuPrice.values())
+                .filter(menuPrice -> menuPrice.getKey().startsWith(menuNameValue))
+                .findFirst().map(MenuPrice::getValue)
+                .orElseThrow(() -> new IllegalArgumentException("가격 정보를 찾을 수 없습니다"));
     }
 }

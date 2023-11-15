@@ -43,4 +43,8 @@ public class XMasService {
     public Map<String, Integer> getUserInputOrderedMenu() {
         return orderedMenuInfo.getUserInputOrderedMenu();
     }
+
+    public Integer getBeforeDiscountTotalPrice() {
+        return orderedMenuInfo.getBeforeDiscountTotalPrice();
+    }
 }
