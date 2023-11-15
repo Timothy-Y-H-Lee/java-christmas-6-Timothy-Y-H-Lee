@@ -70,15 +70,20 @@ public class OutputView {
     }
 
     public void printEventBadge(Integer discountPrice) {
+        System.out.println(EVENT_BADGE_TITLE.getValue());
+        System.out.println(caseEventBadge(discountPrice));
+    }
+
+    private String caseEventBadge(Integer discountPrice) {
         if (0 < discountPrice && discountPrice >= 5_000) {
-            System.out.println(EVENT_BADGE_STAR.getValue() + System.lineSeparator());
+            return EVENT_BADGE_STAR.getValue() + System.lineSeparator();
         }
         if (5_000 < discountPrice && discountPrice >= 10_000) {
-            System.out.println(EVENT_BADGE_TREE.getValue() + System.lineSeparator());
+            return EVENT_BADGE_TREE.getValue() + System.lineSeparator();
         }
-        System.out.println(EVENT_BADGE_TITLE.getValue());
         if (10_000 < discountPrice && discountPrice >= 20_000) {
-            System.out.println(EVENT_BADGE_SANTA.getValue() + System.lineSeparator());
+            return EVENT_BADGE_SANTA.getValue() + System.lineSeparator();
         }
+        return NOTTHING.getValue();
     }
 }

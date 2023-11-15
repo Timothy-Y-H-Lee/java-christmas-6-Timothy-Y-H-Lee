@@ -216,6 +216,8 @@ public class OrderedMenuInfo {
         if (isSetWeekDaysyDiscountPrice) {
             weekDaysyDiscountPrice = findOrderedQuantityByMenuName(WEEKDAYS_DISCOUNT_MENU.getValue())
                     * WEEKDAYS_DISCOUNT_MENU_PER_PRICE.getValue();
+        }
+        if (isSetWeekDaysyDiscountPrice && weekDaysyDiscountPrice > 0) {
             discountDetails += DISCOUNT_DETAILS_WEEK_DAYS_DISCOUNT.getValue()
                     + String.format("%,d원", weekDaysyDiscountPrice) + System.lineSeparator();
         }
