@@ -1,9 +1,11 @@
 package service;
 
 import domain.DiscountInfo;
+import domain.OrderedMenuInfo;
 
 public class XMasService {
     DiscountInfo discountInfo = new DiscountInfo();
+    OrderedMenuInfo orderedMenuInfo = new OrderedMenuInfo();
 
     private XMasService() {
     }
@@ -33,4 +35,7 @@ public class XMasService {
         discountInfo.specialDiscount(visitDay);
     }
 
+    public void orderedMenu(String userInputOrderedMenu) {
+        orderedMenuInfo.userInputOrderedMenu(userInputOrderedMenu);
+    }
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import static enums.EventDateRule.EVENT_MONTH;
+import static enums.UserInterface.ILLEGAL_MENU_ORDER;
 import static enums.UserInterface.INVALIDATE_INPUT_VISIT_DAY;
 
 import java.time.MonthDay;
@@ -18,6 +19,7 @@ public class XMasController {
         readDate();
         xMasService.setVisitDay(visitDay);
         checkDiscountDays();
+        readOrderedMenu();
     }
 
     private void checkDiscountDays() {
@@ -50,6 +52,15 @@ public class XMasController {
         } catch (Exception e) {
             inputView.printMessage(INVALIDATE_INPUT_VISIT_DAY.getValue());
             readDate();
+        }
+    }
+
+    private void readOrderedMenu() {
+        try {
+            xMasService.orderedMenu(inputView.readOrderedMenu());
+        } catch (IllegalArgumentException e) {
+            inputView.printMessage(ILLEGAL_MENU_ORDER.getValue());
+            readOrderedMenu();
         }
     }
 }
